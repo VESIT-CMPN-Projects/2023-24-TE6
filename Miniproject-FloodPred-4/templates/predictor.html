@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/predictor.css">
+    <title>Resilient Rivers</title>
+</head>
+<body>
+    <section id="prediction-form">
+        <form class="form" action="/predict", method="POST">
+            <h1 class="my-3 text-center">Resilient Rivers - Water Level Overflow Predictor</h1>
+            <div class="row">
+                
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="design-gross-storage" class="design-gross-storage">Design Gross Storage (MCM) </label>
+                        <input type="text" class="form-control" id="design-gross-storage" name="design-gross-storage">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="frl" class="frl">FRL (m)</label>
+                        <input type="text" class="form-control" id="frl" name="frl">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="rule-level" class="rule-level">Rule Level (0-10) (m)</label>
+                        <input type="text" class="form-control" id="rule-level" name="rule-level">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="present-water-level" class="present-water-level">Present Water Level (m)</label>
+                        <input type="text" class="form-control" id="present-water-level" name="present-water-level">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="present-gross-storage" class="present-gross-storage">Present Gross Storage (MCM)</label>
+                        <input type="text" class="form-control" id="present-gross-storage" name="present-gross-storage">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="inflow" class="inflow">Inflow (Cusecs)</label>
+                        <input type="text" class="form-control" id="inflow" name="inflow">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="outflow-river" class="outflow-river">Outflow River (Cusecs)</label>
+                        <input type="text" class="form-control" id="outflow-river" name="outflow-river">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="ouflow-canal" class="ouflow-canal">Outflow Canal (Cusecs)</label>
+                        <input type="text" class="form-control" id="ouflow-canal" name="ouflow-canal">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="cumm-rainfall" class="cumm-rainfall">Cumm. Rainfall (mm)</label>
+                        <input type="text" class="form-control" id="cumm-rainfall" name="cumm-rainfall">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="type-of-gate" class="type-of-gate" name="type-of-gate">Type of Gate</label>
+                        <select class="type-of-gate" id="type-of-gate" name="type-of-gate" aria-label="Rain Today">
+                            <option selected>Gate Type</option>
+                            <option value= 0>Gated</option>
+                            <option value= 1>Ungated</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="gate-position" class="gate-position">Gate Position Nos.</label>
+                        <input type="text" class="form-control" id="gate-position" name="gate-position">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="opening" class="opening">Opening (m)</label>
+                        <input type="text" class="form-control" id="opening" name="opening">
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="md-form">
+                        <label for="scheme" class="scheme" name="scheme">Scheme</label>
+                        <select class="scheme" id="scheme" name="scheme" aria-label="Location">
+                            <option selected>Select Scheme</option>
+                            {% for scheme in schemes %}
+                            <option value="{{ loop.index }}">{{ scheme }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2 d-flex align-items-end justify-content-around">
+                    <button type="submit" class="btn btn-info button" style="margin-left: 50%;">Predict</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
